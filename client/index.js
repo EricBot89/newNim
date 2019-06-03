@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import ErrorBoundary from "./ErrorBoundary"
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -22,8 +23,10 @@ const Index = props => {
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Index />
-  </Provider>,
+  <ErrorBoundary>
+    <Provider store={store}>
+      <Index />
+    </Provider>
+  </ErrorBoundary>,
   document.getElementById("root")
 );

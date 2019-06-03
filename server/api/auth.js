@@ -1,10 +1,25 @@
 const express = require("express");
-const { User } = require("../db")
+const passport = require("passport");
+const { User } = require("../db");
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.status(501).send("there is nothing here yet");
+router.get("/", (req, res, next) => {
+  if (req.session.uid) {
+    res.status(200).json({ auth: true });
+  } else {
+    res.status(403).json({ auth: false });
+  }
 });
+
+router.get("/google-auth", passport.authenticate("google", { scope: "email" }));
+
+router.get(
+  "/google-callback",
+  passport.authenticate("google", {
+    successRedirect: "/profile",
+    failureRedirect: "/"
+  })
+);
 
 module.exports = router;
