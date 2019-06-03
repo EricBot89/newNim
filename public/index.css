@@ -1,0 +1,19 @@
+
+body{
+ background: black;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app{
+  width: 60%;
+  height: 60%;
+
+  background: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -6,7 +6,6 @@ const User = db.define("User", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  password: Sequelize.STRING,
   googleId: Sequelize.STRING,
   email: {
     type: Sequelize.STRING,
