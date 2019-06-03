@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { db } = require("./");
+const db = require("./db");
 
 const User = db.define("User", {
   username: {
@@ -9,7 +9,7 @@ const User = db.define("User", {
   password: Sequelize.STRING,
   googleId: Sequelize.STRING,
   email: {
-    type: Sequelize.EMAIL,
+    type: Sequelize.STRING,
     validate: {
       isEmail: true
     }

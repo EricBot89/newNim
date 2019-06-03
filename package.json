@@ -2,9 +2,10 @@
   "name": "newnim",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,17 @@
   },
   "homepage": "https://github.com/EricBot89/newNim#readme",
   "dependencies": {
+    "babel": "^6.23.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "sequelize": "^5.8.7"
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.7",
+    "webpack": "^4.32.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
   }
 }

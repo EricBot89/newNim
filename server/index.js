@@ -19,7 +19,7 @@ server.use("/stats", stats);
 function init (){
   db.sync({force:true});
   server.listen(PORT, () => {
-    console.log(` -- the server is listning on ${port} -- `)
+    console.log(` -- the server is listning on ${PORT} -- `)
   });
 }
 

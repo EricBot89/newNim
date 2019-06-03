@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { db } = require("./");
+const db = require("./db");
 
 const Game = db.define("Game", {
   winner: {
