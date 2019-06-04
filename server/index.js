@@ -40,8 +40,12 @@ passport.use(
       callbackURL: "/auth/google-auth/callback"
     },
 
-    (token, refreshToken, profile, done) => {
-      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
+    async (token, refreshToken, profile, done) => {
+//      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
+      const { id, emails }= profile;
+      const email = emails[0].value;
+      const username = email.split("@")[0]
+      await User.findOrCreate({where: {googleId: id}, defaults: {username, email}})
       done();
     }
   )
