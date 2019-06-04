@@ -41,15 +41,31 @@ passport.use(
     },
 
     async (token, refreshToken, profile, done) => {
-//      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
-      const { id, emails }= profile;
+      //      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
+      const { id, emails } = profile;
       const email = emails[0].value;
-      const username = email.split("@")[0]
-      await User.findOrCreate({where: {googleId: id}, defaults: {username, email}})
-      done();
+      const username = email.split("@")[0];
+      try {
+        const dbres = await User.findOrCreate({
+          where: { googleId: id },
+          defaults: { username, email }
+        });
+        done(null, dbres[0]);
+      } catch (err) {
+        done(err);
+      }
     }
   )
 );
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
+  done(null,user);
+});
 
 server.use(express.static(path.join(__dirname, "..", "public")));
 

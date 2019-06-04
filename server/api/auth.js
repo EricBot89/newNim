@@ -22,4 +22,11 @@ router.get(
   })
 );
 
+router.get("/me", (req, res, next) => {
+  if (req.user) {
+    res.status(200).json(req.user);
+  }
+  res.status(404).send(false);
+});
+
 module.exports = router;

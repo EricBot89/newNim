@@ -2,8 +2,9 @@
 
 const loggingMiddleware = ({ dispatch, getState }) => {
   return next => action => {
-    console.log("no logging implimented");
+    console.log("Old user:", state.user);
     console.log(next(action));
+    console.log("New user:", state.user);
   };
 };
 
