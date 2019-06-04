@@ -1,7 +1,9 @@
+
+
 import React from "react";
 import ReactDOM from "react-dom";
 import ErrorBoundary from "./ErrorBoundary"
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Game, Main, Setup, Profile, Nav } from "./comp/index";
@@ -10,7 +12,7 @@ const Index = props => {
   return (
     <div id="app">
       <Router>
-        <Nav />
+        {props.user.username ? <Nav /> : ""}
         <Switch>
           <Route path="/" component={Main} />
           <Route path="/profile" componenet={Profile} />
@@ -22,10 +24,16 @@ const Index = props => {
   );
 };
 
+const getUserInfoFromState = state => ({
+  user: state.user
+});
+
+const App = connect(getUserInfoFromState,null)(Index)
+
 ReactDOM.render(
   <ErrorBoundary>
     <Provider store={store}>
-      <Index />
+      <App />
     </Provider>
   </ErrorBoundary>,
   document.getElementById("root")

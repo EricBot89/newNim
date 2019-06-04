@@ -37,11 +37,11 @@ passport.use(
       clientID:
         "872740096952-00jih1vjdr33lm4vq6ufln1golj5htd4.apps.googleusercontent.com",
       clientSecret: "586r_9E75ZCBgud6BwLKaMeT",
-      callbackUrl: "/auth/google-callback"
+      callbackURL: "/auth/google-auth/callback"
     },
 
     (token, refreshToken, profile, done) => {
-      console.log(profile)
+      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
       done();
     }
   )

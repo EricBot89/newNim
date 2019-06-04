@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
 router.get("/google-auth", passport.authenticate("google", { scope: "email" }));
 
 router.get(
-  "/google-callback",
+  "/google-auth/callback",
   passport.authenticate("google", {
     successRedirect: "/profile",
     failureRedirect: "/"

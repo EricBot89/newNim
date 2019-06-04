@@ -220,9 +220,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var DCLogin = function DCLogin(props) {
   return _react2.default.createElement(
-    "button",
-    null,
-    "Login with google!"
+    "form",
+    { method: "get", action: "/auth/google-auth" },
+    _react2.default.createElement(
+      "button",
+      null,
+      "Login with google!"
+    ),
+    ";"
   );
 };
 
@@ -577,7 +582,7 @@ var Index = function Index(props) {
     _react2.default.createElement(
       _reactRouterDom.BrowserRouter,
       null,
-      _react2.default.createElement(_index.Nav, null),
+      props.user.username ? _react2.default.createElement(_index.Nav, null) : "",
       _react2.default.createElement(
         _reactRouterDom.Switch,
         null,
@@ -590,13 +595,21 @@ var Index = function Index(props) {
   );
 };
 
+var getUserInfoFromState = function getUserInfoFromState(state) {
+  return {
+    user: state.user
+  };
+};
+
+var App = (0, _reactRedux.connect)(getUserInfoFromState, null)(Index);
+
 _reactDom2.default.render(_react2.default.createElement(
   _ErrorBoundary2.default,
   null,
   _react2.default.createElement(
     _reactRedux.Provider,
     { store: _store.store },
-    _react2.default.createElement(Index, null)
+    _react2.default.createElement(App, null)
   )
 ), document.getElementById("root"));
 
@@ -25994,7 +26007,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
