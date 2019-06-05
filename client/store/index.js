@@ -18,8 +18,9 @@ const setUserOnState = user => {
 const loginThunk = () => {
   return async dispatch => {
     const user = await axios.get("auth/me");
+    console.log(user)
     if (user) {
-      setUserOnState(user.data);
+      dispatch(setUserOnState(user.data));
     }
   };
 };

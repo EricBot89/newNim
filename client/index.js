@@ -1,21 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ErrorBoundary from "./ErrorBoundary";
+import 'babel-polyfill';
+import { ErrorBoundary } from "./ErrorBoundary";
 import { Provider, connect } from "react-redux";
 import { store, loginThunk } from "./store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Game, Main, Setup, Profile, Nav } from "./comp/index";
 
-class Index extends React.Componenet {
-  componenetDidMount() {
-    props.getUserData();
+class Index extends React.Component {
+   async componentDidMount() {
+    await this.props.getUserData();
   }
 
   render() {
     return (
       <div id="app">
         <Router>
-          {props.user.username ? <Nav /> : ""}
+          {this.props.user.username ? <Nav /> : ""}
           <Switch>
             <Route path="/" component={Main} />
             <Route path="/profile" componenet={Profile} />

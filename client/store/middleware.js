@@ -2,9 +2,9 @@
 
 const loggingMiddleware = ({ dispatch, getState }) => {
   return next => action => {
-    console.log("Old user:", state.user);
+    console.log("Old user:", getState().user);
     console.log(next(action));
-    console.log("New user:", state.user);
+    console.log("New user:", getState().user);
   };
 };
 

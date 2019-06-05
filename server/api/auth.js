@@ -17,7 +17,7 @@ router.get("/google-auth", passport.authenticate("google", { scope: "email" }));
 router.get(
   "/google-auth/callback",
   passport.authenticate("google", {
-    successRedirect: "/profile",
+    successRedirect: "/",
     failureRedirect: "/"
   })
 );

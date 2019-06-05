@@ -41,7 +41,7 @@ passport.use(
     },
 
     async (token, refreshToken, profile, done) => {
-      //      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
+      console.log("token: ", token, "\n", "rftkn: ", refreshToken, "\n", "profile: ", profile)
       const { id, emails } = profile;
       const email = emails[0].value;
       const username = email.split("@")[0];
@@ -63,7 +63,12 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id);
+  const strId = String(id);
+  const user = await User.findOne({
+    where: {
+    googleId: strId
+    }
+  });
   done(null,user);
 });
 
