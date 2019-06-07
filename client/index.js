@@ -31,8 +31,8 @@ class Index extends React.Component {
 
 const mountUserOnRefresh = dispatch => {
   return {
-    getUserData() {
-      dispatch(loginThunk());
+    async getUserData() {
+      await dispatch(loginThunk());
     }
   };
 };

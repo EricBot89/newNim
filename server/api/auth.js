@@ -22,11 +22,45 @@ router.get(
   })
 );
 
-router.get("/me", (req, res, next) => {
-  if (req.user) {
-    res.status(200).json(req.user);
-  }
-  res.status(404).send(false);
+router.get("/me", async (req, res, next) => {
+  res.json(req.user || {})
 });
+
+router.delete('/logout', (req, res, next) => {
+  req.logout()
+  req.session.destroy((err) => {
+    if (err) return next(err)
+    res.status(204).end()
+  })
+})
+
+const GoogleStrat = require("passport-google-oauth").OAuth2Strategy;
+
+passport.use(
+  new GoogleStrat(
+    {
+      clientID:
+        "872740096952-00jih1vjdr33lm4vq6ufln1golj5htd4.apps.googleusercontent.com",
+      clientSecret: "586r_9E75ZCBgud6BwLKaMeT",
+      callbackURL: "/auth/google-auth/callback"
+    },
+
+    async (token, refreshToken, profile, done) => {
+      const { id, emails } = profile;
+      const email = emails[0].value;
+      const username = email.split("@")[0];
+      try {
+        const [user] = await User.findOrCreate({
+          where: { googleId: id },
+          defaults: { username, email }
+        });
+        done(null, user);
+      } catch (err) {
+        done(err);
+      }
+    }
+  )
+);
+
 
 module.exports = router;

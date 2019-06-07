@@ -29,7 +29,7 @@ const reducer = (state = initState, action) => {
   switch (action.type) {
     case SET_USER_ON_STATE:
       state.user = action.user;
-      break;
+      return state;
     default:
       break;
   }

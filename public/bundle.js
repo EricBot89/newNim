@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./client/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -648,9 +648,29 @@ var Index = function (_React$Component) {
 
 var mountUserOnRefresh = function mountUserOnRefresh(dispatch) {
   return {
-    getUserData: function getUserData() {
-      dispatch((0, _store.loginThunk)());
-    }
+    getUserData: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return dispatch((0, _store.loginThunk)());
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getUserData() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getUserData;
+    }()
   };
 };
 
@@ -755,7 +775,7 @@ var reducer = function reducer() {
   switch (action.type) {
     case SET_USER_ON_STATE:
       state.user = action.user;
-      break;
+      return state;
     default:
       break;
   }
@@ -805,6 +825,7 @@ var thunkMiddleware = function thunkMiddleware(_ref2) {
   return function (next) {
     return function (action) {
       if (typeof action === "function") {
+        console.log("thunk in progress");
         return action(dispatch, getState);
       }
       return next(action);
@@ -39126,7 +39147,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44749,6 +44770,19 @@ module.exports = function(originalModule) {
 	}
 	return module;
 };
+
+
+/***/ }),
+
+/***/ 0:
+/*!**********************************************!*\
+  !*** multi babel-polyfill ./client/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! babel-polyfill */"./node_modules/babel-polyfill/lib/index.js");
+module.exports = __webpack_require__(/*! ./client/index.js */"./client/index.js");
 
 
 /***/ })
