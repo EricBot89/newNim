@@ -16,12 +16,12 @@ class Index extends React.Component {
     return (
       <div id="app">
         <Router>
-          {this.props.user.username ? <Nav /> : ""}
+          <Nav />
           <Switch>
-            <Route path="/" component={Main} />
-            <Route path="/profile" componenet={Profile} />
-            <Route path="/setup" componenet={Setup} />
-            <Route path="/game" componenet={Game} />
+            <Route exact path="/" component={Main} />
+            <Route exact path="/profile" componenet={Profile} />
+            <Route exact path="/setup" componenet={Setup} />
+            <Route exact path="/game" componenet={Game} />
           </Switch>
         </Router>
       </div>

@@ -629,14 +629,14 @@ var Index = function (_React$Component) {
         _react2.default.createElement(
           _reactRouterDom.BrowserRouter,
           null,
-          this.props.user.username ? _react2.default.createElement(_index.Nav, null) : "",
+          _react2.default.createElement(_index.Nav, null),
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _index.Main }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: "/profile", componenet: _index.Profile }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: "/setup", componenet: _index.Setup }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: "/game", componenet: _index.Game })
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _index.Main }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/profile", componenet: _index.Profile }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/setup", componenet: _index.Setup }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/game", componenet: _index.Game })
           )
         )
       );
@@ -39147,7 +39147,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
